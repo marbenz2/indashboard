@@ -42,8 +42,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <KindeProvider
       clientId="f527bfdeb7f3423ab0527bdde9700aae"
       domain="https://marbenz.kinde.com"
-      redirectUri="http://localhost:5173/dashboard"
-      logoutUri="http://localhost:5173/dashboard"
+      redirectUri="https://indashboard.pages.dev/dashboard"
+      logoutUri="https://indashboard.pages.dev/dashboard"
     >
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <RouterProvider router={router} />
