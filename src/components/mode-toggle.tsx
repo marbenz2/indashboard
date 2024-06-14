@@ -1,25 +1,49 @@
+import { useEffect, useState } from "react";
 import { useTheme } from "./theme-provider";
-import { Select, SelectItem } from "@tremor/react";
-import { RiMoonLine, RiSettingsLine, RiSunLine } from "@remixicon/react";
+import { RiMoonLine, RiSunLine } from "@remixicon/react";
+import { Button } from "@tremor/react";
 
 export function ModeToggle() {
-  const { setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
+  const [systemTheme, setSystemTheme] = useState<"light" | "dark" | null>(null);
+
+  useEffect(() => {
+    if (theme === "system") {
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches
+        ? "dark"
+        : "light";
+      setSystemTheme(systemTheme);
+    }
+    setSystemTheme(null);
+  }, [theme]);
 
   return (
-    <Select className="w-fit" id="theme" name="theme" placeholder="Theme">
-      <SelectItem onClick={() => setTheme("light")} value="1" icon={RiSunLine}>
-        Light
-      </SelectItem>
-      <SelectItem onClick={() => setTheme("dark")} value="2" icon={RiMoonLine}>
-        Dark
-      </SelectItem>
-      <SelectItem
-        onClick={() => setTheme("system")}
-        value="3"
-        icon={RiSettingsLine}
+    <>
+      <Button
+        size="xs"
+        color="orange"
+        variant="secondary"
+        onClick={() => {
+          if (theme === "system") {
+            setTheme(systemTheme === "dark" ? "light" : "dark");
+          } else {
+            setTheme(theme === "dark" ? "light" : "dark");
+          }
+        }}
       >
-        System
-      </SelectItem>
-    </Select>
+        {theme === "system" ? (
+          systemTheme === "dark" ? (
+            <RiMoonLine size={24} />
+          ) : (
+            <RiSunLine size={24} />
+          )
+        ) : theme === "dark" ? (
+          <RiMoonLine size={24} />
+        ) : (
+          <RiSunLine size={24} />
+        )}
+      </Button>
+    </>
   );
 }

@@ -35,15 +35,19 @@ const Navigation = () => {
       } transition-all duration-500`}
     >
       <div className="flex w-full max-w-7xl px-4 md:px-12 xl:px-24 py-6 justify-between">
-        <div className="flex gap-12">
-          <Button color="orange" variant="secondary" onClick={handleOnClick}>
+        <div className="flex gap-2 sm:gap-12">
+          <Button
+            size="md"
+            color="orange"
+            variant="secondary"
+            onClick={handleOnClick}
+          >
             Loslegen...
           </Button>
-
-          <Button color="orange" variant="secondary">
+          <Button size="md" color="orange" variant="secondary">
             Prices
           </Button>
-          <Button color="orange" variant="secondary">
+          <Button size="md" color="orange" variant="secondary">
             Docs
           </Button>
         </div>

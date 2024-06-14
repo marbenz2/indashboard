@@ -11,6 +11,48 @@ import {
   RiUserLine,
 } from "@remixicon/react";
 
+type Links = {
+  name: string;
+  to: string;
+  icon: React.ComponentType;
+}[];
+
+const protectedLinks: Links = [
+  {
+    name: "Dashboard",
+    to: "",
+    icon: RiDashboardLine,
+  },
+  {
+    name: "Profile",
+    to: "profile",
+    icon: RiUserLine,
+  },
+  {
+    name: "Settings",
+    to: "settings",
+    icon: RiSettingsLine,
+  },
+  {
+    name: "Log Out",
+    to: "loading",
+    icon: RiLogoutBoxLine,
+  },
+];
+
+const publicLinks: Links = [
+  {
+    name: "Register",
+    to: "",
+    icon: RiPencilLine,
+  },
+  {
+    name: "Log In",
+    to: "",
+    icon: RiLoginBoxLine,
+  },
+];
+
 const Navigation = () => {
   const { login, register, logout, isAuthenticated, user, isLoading } =
     useKindeAuth();
@@ -22,88 +64,64 @@ const Navigation = () => {
 
   return (
     <aside
-      className="flex z-40 min-h-screen transition-transform -translate-x-full sm:translate-x-0 border-r-2 border-white/15"
+      className="flex flex-col sm:flex-row z-40 h-fit sm:min-h-screen border-b-2 sm:border-b-0 sm:border-r-2 border-white/15"
       aria-label="Sidebar"
     >
-      <div className="flex flex-col gap-8 py-8 pl-6 pr-12 overflow-y-auto bg-white/10">
-        <NavLink to="/app">
-          <h1 className="text-tremor-title">SoMeDas</h1>
-          <p className="text-tremor-label">Social Media Dashboard</p>
+      <div className="flex flex-row sm:flex-col gap-8 py-2 sm:py-8 px-2 lg:pl-6 lg:pr-12 overflow-y-auto bg-white/10 justify-center sm:justify-start">
+        <NavLink to="/app" className="flex flex-col justify-center">
+          <h1 className="text-tremor lg:text-tremor-title text-center">IDB</h1>
+          <p className="hidden lg:block text-tremor-label text-center">
+            Slogan
+          </p>
         </NavLink>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-row sm:flex-col gap-4 text-tremor-medium">
           {isLoading && <Spinner />}
           {!isLoading && !isAuthenticated && (
-            <ul className="flex flex-col gap-4 text-tremor-default text-tremor-content-strong dark:text-dark-tremor-content-strong">
-              <li
-                className="flex items-center gap-2 pl-3 pr-6 py-2 hover:bg-white/10 rounded-full cursor-pointer"
-                onClick={() => register()}
-              >
-                <Icon icon={RiPencilLine} />
-                <p className="flex items-center w-full h-full">Register</p>
-              </li>
-              <li
-                className="flex items-center gap-2 pl-3 pr-6 py-2 hover:bg-white/10 rounded-full cursor-pointer"
-                onClick={() => login()}
-              >
-                <Icon icon={RiLoginBoxLine} />
-                <p className="flex items-center w-full h-full">Log In</p>
-              </li>
+            <ul className="flex flex-col gap-2 text-tremor-content-strong dark:text-dark-tremor-content-strong">
+              {publicLinks.map((link) => (
+                <li
+                  key={link.name}
+                  className="flex items-center hover:bg-white/10 rounded-full cursor-pointer overflow-clip"
+                >
+                  <NavLink
+                    to={link.to}
+                    onClick={() => {
+                      if (link.name === "Register") {
+                        register();
+                      } else if (link.name === "Log In") {
+                        login();
+                      }
+                    }}
+                    className="flex items-center w-full h-full gap-2 pl-3 pr-6 py-2"
+                  >
+                    <Icon icon={link.icon} />
+                    <span className="hidden md:block">{link.name}</span>
+                  </NavLink>
+                </li>
+              ))}
             </ul>
           )}
           {!isLoading && isAuthenticated && user && (
-            <ul className="flex flex-col gap-4 text-tremor-default text-tremor-content-strong dark:text-dark-tremor-content-strong">
-              <li className="flex w-fit">
-                <NavLink
-                  to="/dashboard"
-                  className={() =>
-                    [
-                      "flex items-center gap-2 w-full px-2 py-1 hover:bg-white/10 rounded-full",
-                      checkIsActive("/dashboard") ? "bg-white/10" : "",
-                    ].join(" ")
-                  }
+            <ul className="flex flex-row sm:flex-col gap-2 text-tremor-content-strong dark:text-dark-tremor-content-strong">
+              {protectedLinks.map((link) => (
+                <li
+                  key={link.name}
+                  className={`flex items-center w-fit hover:bg-white/10 rounded-full cursor-pointer overflow-clip ${
+                    checkIsActive(link.to) ? "bg-white/10" : ""
+                  }`}
                 >
-                  <Icon icon={RiDashboardLine} />
-                  <p className="pr-2">Dashboard</p>
-                </NavLink>
-              </li>
-              <li className="flex w-fit">
-                <NavLink
-                  to="/dashboard/profile"
-                  className={({ isActive }) =>
-                    [
-                      "flex items-center gap-2 w-full px-2 py-1 hover:bg-white/10 rounded-full",
-                      isActive ? "bg-white/10" : "",
-                    ].join(" ")
-                  }
-                >
-                  <Icon icon={RiUserLine} />
-                  <p className="pr-2">User Info</p>
-                </NavLink>
-              </li>
-              <li className="flex w-fit">
-                <NavLink
-                  to="/dashboard/settings"
-                  className={({ isActive }) =>
-                    [
-                      "flex items-center gap-2 w-full px-2 py-1 hover:bg-white/10 rounded-full",
-                      isActive ? "bg-white/10" : "",
-                    ].join(" ")
-                  }
-                >
-                  <Icon icon={RiSettingsLine} />
-                  <p className="pr-2">Settings</p>
-                </NavLink>
-              </li>
-              <li className="flex w-fit hover:bg-white/10 rounded-full">
-                <NavLink
-                  to="/dashboard"
-                  onClick={() => logout()}
-                  className="flex items-center gap-2 w-full px-2 py-1"
-                >
-                  <Icon icon={RiLogoutBoxLine} />
-                  <p className="pr-2">Sign Out</p>
-                </NavLink>
-              </li>
+                  <NavLink
+                    to={link.to}
+                    {...(link.name === "Log Out"
+                      ? { onClick: () => logout() }
+                      : {})}
+                    className="flex items-center w-full h-full gap-2 pl-3 pr-3 lg:pr-6 py-2"
+                  >
+                    <Icon icon={link.icon} />
+                    <span className="hidden md:block">{link.name}</span>
+                  </NavLink>
+                </li>
+              ))}
             </ul>
           )}
         </div>
