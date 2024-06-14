@@ -77,7 +77,7 @@ const Navigation = () => {
         <div className="flex flex-row sm:flex-col gap-4 text-tremor-medium">
           {isLoading && <Spinner />}
           {!isLoading && !isAuthenticated && (
-            <ul className="flex flex-col gap-2 text-tremor-content-strong dark:text-dark-tremor-content-strong">
+            <ul className="flex flex-row sm:flex-col gap-2 text-tremor-content-strong dark:text-dark-tremor-content-strong">
               {publicLinks.map((link) => (
                 <li
                   key={link.name}
