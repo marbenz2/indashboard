@@ -1,7 +1,7 @@
 const Slogan = () => {
   return (
     <div className="flex flex-col w-full items-center py-24">
-      <h2 className="text-xl sm:text-3xl lg:text-5xl font-thin text-tremor-content text-center">
+      <h2 className="text-xl sm:text-3xl lg:text-5xl font-thin text-tremor-content">
         <span className="text-2xl sm:text-4xl lg:text-7xl font-normal text-tremor-brand-accent">
           Revolutionieren
         </span>{" "}

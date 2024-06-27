@@ -12,7 +12,7 @@ const Arguments = () => {
           <h3 className="flex-1 text-xl sm:text-2xl lg:text-3xl font-bold text-tremor-brand-accent">
             Behalten Sie die Kontrolle
           </h3>
-          <ul className="flex-1 list-disc list-inside flex flex-col gap-2 text-md sm:text-lg font-thin">
+          <ul className="flex-1 list-disc list-inside flex flex-col gap-2 font-thin">
             <li>Echtzeit-Überwachung: Alle relevanten Parameter im Blick.</li>
             <li>
               Engpassanalyse: Optimieren Sie Ihre Produktion für maximale
@@ -32,7 +32,7 @@ const Arguments = () => {
           <h3 className="flex-1 text-xl sm:text-2xl lg:text-3xl font-bold text-tremor-brand-accent">
             Gewinnen Sie wertvolle Erkenntnisse
           </h3>
-          <ul className="flex-1 list-disc list-inside flex flex-col gap-2 text-md sm:text-lg font-thin">
+          <ul className="flex-1 list-disc list-inside flex flex-col gap-2 font-thin">
             <li>
               Intelligente Datenerkenntnisse: Transformieren Sie Daten in
               Wissen.
@@ -49,7 +49,7 @@ const Arguments = () => {
           <h3 className="flex-1 text-xl sm:text-2xl lg:text-3xl font-bold text-tremor-brand-accent">
             Intuitive Benutzerfreundlichkeit
           </h3>
-          <ul className="flex-1 list-disc list-inside flex flex-col gap-2 text-md sm:text-lg font-thin">
+          <ul className="flex-1 list-disc list-inside flex flex-col gap-2 font-thin">
             <li>Einfache Bedienung: Für jedermann geeignet.</li>
             <li>Schneller Zugriff: Alle Informationen auf einen Blick.</li>
             <li>Skalierbare Lösung: Passt sich an Ihre Bedürfnisse an.</li>
