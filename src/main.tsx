@@ -6,7 +6,7 @@ import { ThemeProvider } from "./components/theme-provider.tsx";
 import "./index.css";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import Profile from "./pages/protected/Profile.tsx";
-import Dashboard from "./pages/Dashboard.tsx";
+import Dashboard from "./pages/protected/Dashboard.tsx";
 import Settings from "./pages/protected/Settings.tsx";
 import Landing from "./pages/Landing.tsx";
 import LayoutLanding from "./layouts/LayoutLanding.tsx";

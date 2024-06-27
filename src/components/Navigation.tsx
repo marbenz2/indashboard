@@ -20,7 +20,7 @@ type Links = {
 const protectedLinks: Links = [
   {
     name: "Dashboard",
-    to: "",
+    to: "/dashboard",
     icon: RiDashboardLine,
   },
   {
@@ -68,7 +68,7 @@ const Navigation = () => {
       aria-label="Sidebar"
     >
       <div className="flex flex-row sm:flex-col gap-8 py-2 sm:py-8 px-2 lg:pl-6 lg:pr-12 overflow-y-auto bg-white/10 justify-center sm:justify-start">
-        <NavLink to="/app" className="flex flex-col justify-center">
+        <NavLink to="/dashboard" className="flex flex-col justify-center">
           <h1 className="text-tremor lg:text-tremor-title text-center">IDB</h1>
           <p className="hidden lg:block text-tremor-label text-center">
             Slogan
