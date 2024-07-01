@@ -64,10 +64,10 @@ const Navigation = () => {
 
   return (
     <aside
-      className="flex flex-col sm:flex-row z-40 h-fit sm:min-h-screen border-b-2 sm:border-b-0 sm:border-r-2 border-white/15"
+      className="flex flex-col sm:flex-row z-40 sm:min-h-screen border-b-2 sm:border-b-0 sm:border-r-2 border-dark-tremor-ring"
       aria-label="Sidebar"
     >
-      <div className="flex flex-row sm:flex-col gap-8 py-2 sm:py-8 px-2 lg:pl-6 lg:pr-12 overflow-y-auto bg-white/10 justify-center sm:justify-start">
+      <div className="flex flex-row sm:flex-col gap-8 py-2 sm:py-8 px-2 lg:pl-6 lg:pr-12 overflow-y-auto bg-dark-tremor-background justify-center sm:justify-start">
         <NavLink to="/dashboard" className="flex flex-col justify-center">
           <h1 className="text-tremor lg:text-tremor-title text-center">IDB</h1>
           <p className="hidden lg:block text-tremor-label text-center">
