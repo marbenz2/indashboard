@@ -1,9 +1,9 @@
+import React from "react";
 import {
   Accordion,
   AccordionBody,
   AccordionHeader,
   BarChart,
-  Card,
 } from "@tremor/react";
 import {
   CardContent,
@@ -15,16 +15,10 @@ import { monthlyIncome } from "../data/data";
 import { MonthlyIncomeData } from "../types/types";
 import { valueFormatter } from "../lib/utils";
 
-type PayloadItem = {
-  color: string;
-  dataKey: string;
-  value: number;
-};
-
-type CustomTooltipTypeBar = {
-  payload: PayloadItem[];
-  active: boolean | undefined;
-  label: string;
+type CustomTooltipProps = {
+  payload?: any[];
+  active?: boolean;
+  label?: string | number;
 };
 
 type Entry = {
@@ -84,8 +78,9 @@ const dataFormatter = (monthlyIncome: MonthlyIncomeData[]): Entry[] => {
 
 const data = dataFormatter(monthlyIncome);
 
-const CustomTooltip = ({ payload, active }: CustomTooltipTypeBar) => {
+const CustomTooltip: React.FC<CustomTooltipProps> = ({ payload, active }) => {
   if (!active || !payload) return null;
+
   return (
     <div className="w-56 space-y-4 rounded-tremor-default border border-tremor-border dark:border-dark-tremor-border bg-tremor-background dark:bg-dark-tremor-background p-2 text-tremor-default shadow-tremor-dropdown dark:shadow-dark-tremor-dropdown">
       {payload.map((category, idx) => (
