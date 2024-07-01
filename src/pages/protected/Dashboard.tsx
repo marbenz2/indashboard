@@ -1,8 +1,10 @@
-import CardDashboard from "../../components/ui/CardDashboard";
-import AreaChartUi from "../../components/ui/AreaChartUi";
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 import Spinner from "../../components/ui/Spinner";
 import { Button } from "@tremor/react";
+import MonthlyIncome from "../../components/MonthlyIncome";
+import MonthlyFixExpenses from "../../components/MonthlyFixExpenses";
+import MonthOverview from "../../components/MonthOverview";
+import MonthlyVariableExpenses from "../../components/MonthlyVariableExpenses";
 
 const Dashboard = () => {
   const { login, user, isLoading, isAuthenticated } = useKindeAuth();
@@ -10,10 +12,13 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col w-full">
       {user && !isLoading && isAuthenticated && (
-        <div>
-          <CardDashboard>
-            <AreaChartUi />
-          </CardDashboard>
+        <div className="flex flex-col gap-4">
+          <MonthOverview />
+          <MonthlyIncome />
+          <div className="flex flex-col lg:flex-row gap-4">
+            <MonthlyFixExpenses />
+            <MonthlyVariableExpenses />
+          </div>
         </div>
       )}
       {!user && !isLoading && !isAuthenticated && (
