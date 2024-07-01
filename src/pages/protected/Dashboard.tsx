@@ -7,11 +7,11 @@ import MonthOverview from "../../components/MonthOverview";
 import MonthlyVariableExpenses from "../../components/MonthlyVariableExpenses";
 
 const Dashboard = () => {
-  const { login, user, isLoading, isAuthenticated } = useKindeAuth();
+  const { login, isLoading, isAuthenticated } = useKindeAuth();
 
   return (
     <div className="flex flex-col w-full">
-      {user && !isLoading && isAuthenticated && (
+      {!isLoading && isAuthenticated && (
         <div className="flex flex-col gap-4">
           <MonthOverview />
           <MonthlyIncome />
@@ -21,7 +21,7 @@ const Dashboard = () => {
           </div>
         </div>
       )}
-      {!user && !isLoading && !isAuthenticated && (
+      {!isLoading && !isAuthenticated && (
         <div className="flex w-full h-full items-center justify-center flex-col gap-4">
           <h2 className="text-tremor-title">
             Please log in to your account to see your Dashboard.
